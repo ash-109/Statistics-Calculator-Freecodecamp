@@ -10,15 +10,26 @@ const calculate = () => {
   const array = value.split(/,\s*/g);
   const numbers = array.map((el) => Number(el)).filter((el) => !isNaN(el));
   const mean = getMean(numbers)
+const median= getMedian(numbers)
+
 
   document.querySelector("#mean").textContent = mean; // afficher la valeur de mean dans le html
+  document.querySelector("#median").textContent = median
+  //afficher la valeur de median dans le html
 };
 
 
 // calculer la mediane
 const getMedian = (array) => {
   const sorted = array.sort((a, b) => a - b);
-
+  const median =
+  array.length % 2 === 0
+    ? getMean([sorted[array.length / 2], sorted[array.length / 2 - 1]])
+    : sorted[Math.floor(array.length / 2)];
+return median;
+}
+const getMode = (array) =>{
+  
 }
 
 
@@ -27,11 +38,11 @@ const getMedian = (array) => {
 
 /* const testArr1 = [1, 2, 3, 4, 5];
 const testArr2 = [1, 2, 3, 4, 5, 6];
-// check if array length is even
+// check if array length is even (pair)
 let isEven= testArr2.length % 2 === 0
 console.log(isEven);
 
-// check if array length is odd
+// check if array length is odd (impair)
 arr.length % 2 === 1;
 
 !!!! Si le reste est 0, le nombre est pair. Si le reste est 1, le nombre est impair. !!!!
